@@ -52,6 +52,7 @@ else{
 
 //check for confirm password field
 if(trim($_POST['password']) != trim($_POST['confirm_password'])){
+    echo "<script language='javascript'>alert('Password and confirm password did not match!');</script>"; 
     $password_err = "Passwords should match";
 }
 
@@ -118,7 +119,7 @@ mysqli_close($conn);
       <input type="password" name="confirm_password" class="form-control" id="floatingPassword" placeholder="Confirm Password">
       <label for="floatingPassword">Confirm Password</label>
     </div>
-    
+    <br>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Register here</button><br><br>
     
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>

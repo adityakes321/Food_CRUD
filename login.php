@@ -34,7 +34,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if(mysqli_stmt_num_rows($stmt) == 1){
                 mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
                 if(mysqli_stmt_fetch($stmt)){
-                    echo "error is here";
+                    // echo "<div><p>Wrong credentials!</p></div>";
+                    echo "<script language='javascript'>alert('Wrong Credentials!');</script>"; 
                     if (hash('sha256', $password) == $hashed_password)
                     {
 
