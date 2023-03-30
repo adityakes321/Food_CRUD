@@ -74,9 +74,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <h1 class="modal-title fs-5" id="editModalLabel">Edit this item</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-<div class="modal-body">
 
-      <form action="/intern/welcome.php" method="post">
+    <form action="/intern/welcome.php" method="post">
+      <div class="modal-body">
+
+     
         <input type="hidden" class="hidden" name="snoEdit" id="snoEdit">
     <div class="mb-3">
     <label for="title" class="form-label">Food Title</label>
@@ -87,15 +89,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <div class="form-floating">
     <textarea class="form-control" name="descriptionEdit" id="descriptionEdit" style="height: 100px"></textarea>
   </div>
-  
-    <button type="submit" class="btn btn-primary">Update item</button>
-    </form>  
 
 </div>
-      <div class="modal-footer">
+      <div class="modal-footer d-block mr-auto">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
+ </form> 
     </div>
   </div>
 </div>
@@ -233,6 +233,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 if(confirm("Are you sure you want to delete this item!")){
                     console.log("yes");
                     window.location = `/intern/welcome.php?delete=${sno}`;
+                    //TODO: Create a form and use post request to submit a form
                 }
                 else{
                     console.log("no");
