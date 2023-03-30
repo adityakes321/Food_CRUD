@@ -14,7 +14,9 @@ $err = "";
 //if request method is post
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(empty(trim($_POST['username'])) || empty(trim($_POST['password']))){
-        $username_err = "Please enter username + password";
+      echo "<script language='javascript'>alert('Please enter username and password both');</script>"; 
+   
+        $username_err = "Please enter username & password both.";
     }
     else{
         $username = trim($_POST['username']);

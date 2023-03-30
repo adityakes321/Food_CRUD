@@ -8,6 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     //check if username is empty
 
     if(empty(trim($_POST["username"]))){
+        echo "<script language='javascript'>alert('Username cannot be blank!');</script>"; 
         $username_err = "Username cannot be blank";
     }
     else{
@@ -24,6 +25,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                 mysqli_stmt_store_result($stmt);
 
                 if(mysqli_stmt_num_rows($stmt) == 1){
+                    echo "<script language='javascript'>alert('This username is already taken!');</script>"; 
                     $username_err = "This username is already taken";
                 }
                 else{
@@ -41,9 +43,11 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 //check for password
 if(empty(trim($_POST['password']))){
+    echo "<script language='javascript'>alert('Password cannot be blank!');</script>"; 
     $password_err = "Password cannot be blank";
 }
 elseif(strlen(trim($_POST['password'])) < 5){
+    echo "<script language='javascript'>alert('Password cannot be less than 5 characters!');</script>"; 
     $password_err = "Password cannot be less than 5 characters";
 }
 else{
