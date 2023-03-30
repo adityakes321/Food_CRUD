@@ -126,9 +126,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <li class="nav-item">
           <a class="nav-link" href="#">Contact Us</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item position-absolute end-0">
           <a class="nav-link" href="logout.php">Logout</a>
-        </li>
+</li>
       </ul>
     </div>
   </div>

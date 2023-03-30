@@ -111,19 +111,14 @@ mysqli_close($conn);
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating">
-      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input style="margin-bottom: 0;" type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
     <div class="form-floating">
       <input type="password" name="confirm_password" class="form-control" id="floatingPassword" placeholder="Confirm Password">
       <label for="floatingPassword">Confirm Password</label>
     </div>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
+    
     <button class="w-100 btn btn-lg btn-primary" type="submit">Register here</button><br><br>
     
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>

@@ -85,12 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Enter Password">
       <label for="floatingPassword">Password</label>
     </div>
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
+    <br>
     <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button><br><br>
     <a class="w-100 btn btn-lg btn-primary"href="register.php">Sign up</a>
     <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
