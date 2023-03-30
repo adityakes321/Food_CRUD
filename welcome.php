@@ -16,10 +16,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(isset( $_POST['snoEdit'])){
         //update the record
         $sno = $_POST['snoEdit'];
+        $image = $_POST['imageEdit'];
         $title = $_POST['titleEdit'];
         $description = $_POST['descriptionEdit'];
     
-       $sql =  "UPDATE `food` SET `title` = '$title' , `description` = '$description' WHERE `food`.`sno` = $sno";
+       $sql =  "UPDATE `food` SET `image` = '$image' , `title` = '$title' , `description` = '$description' WHERE `food`.`sno` = $sno";
        $result = mysqli_query($conn, $sql);
 
        if($result){
@@ -31,10 +32,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
     else{
 
+    $image = $_POST['image'];
     $title = $_POST['title'];
     $description = $_POST['description'];
 
-   $sql =  "INSERT INTO `food` (`title`, `description`) VALUES ('$title', '$description');";
+   $sql =  "INSERT INTO `food` (`image`, `title`, `description`) VALUES ('$image', '$title', '$description');";
    $result = mysqli_query($conn, $sql);
 
    if($result){
@@ -85,6 +87,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <input type="text" class="form-control" id="titleEdit" name="titleEdit" aria-describedby="emailHelp">
     
     </div>
+    <div class="mb-3">
+    <label for="imageEdit" class="form-label">Food Image link</label>
+    <input type="text" class="form-control" id="imageEdit" name="imageEdit" aria-describedby="emailHelp">
+    
+    </div>
       <label for="exampleInputEmail1" class="form-label">Food Description</label>
     <div class="form-floating">
     <textarea class="form-control" name="descriptionEdit" id="descriptionEdit" style="height: 100px"></textarea>
@@ -95,7 +102,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
- </form> 
+ </form>
+ 
     </div>
   </div>
 </div>
@@ -118,6 +126,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <li class="nav-item">
           <a class="nav-link" href="#">Contact Us</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="logout.php">Logout</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -126,7 +137,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <?php
  if($insert){
     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-    <strong>Success!</strong> Your menu has been inserted successfully.
+    <strong>Success!</strong> Your item has been inserted successfully.
     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
   </div>";
  }
@@ -134,7 +145,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <?php
  if($delete){
     echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
-    <strong>Success!</strong> Your menu has been deleted successfully.
+    <strong>Success!</strong> Your item has been deleted successfully.
     <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
   </div>";
  }
@@ -149,10 +160,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
 
 <div class="container my-4">
+  <div class="row">
+    <div class="col my-4">
     <form action="/intern/welcome.php" method="post">
   <div class="mb-3">
     <label for="title" class="form-label">Food Title</label>
     <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+    
+  </div>
+  <div class="mb-3">
+    <label for="title" class="form-label">Food Image Link</label>
+    <input type="text" class="form-control" id="image" name="image" aria-describedby="emailHelp">
     
   </div>
   <label for="exampleInputEmail1" class="form-label">Food Description</label>
@@ -160,8 +178,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <textarea class="form-control" name="description" id="description" style="height: 100px"></textarea>
 </div>
   
-  <button type="submit" class="btn btn-primary">Add item</button>
+  <button type="submit" class="btn btn-primary my-4">Add item</button>
 </form>
+</div>
+<div class="col"><img src="banner.png"></div>
+</div>
 </div>
 
 <div class="container my-4">
@@ -173,6 +194,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <thead>
     <tr>
       <th scope="col">S.No</th>
+      <th scope="col">Image</th>
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Actions</th>
@@ -188,6 +210,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $sno = $sno+1;
     echo "<tr>
     <th scope='row'>".$sno. "</th>
+    <td><img src=".$row['image']." width=90px' height='90px'></td>
     <td>".$row['title']. "</td>
     <td>".$row['description']. "</td>
     <td><button class='edit btn btn-sm btn-primary' id=".$row['sno']." href='/edit'>Edit</button> <button class='delete btn btn-sm btn-primary' id=d".$row['sno']." href='/edit'>Delete</button></td>
@@ -233,7 +256,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 if(confirm("Are you sure you want to delete this item!")){
                     console.log("yes");
                     window.location = `/intern/welcome.php?delete=${sno}`;
-                    //TODO: Create a form and use post request to submit a form
                 }
                 else{
                     console.log("no");
